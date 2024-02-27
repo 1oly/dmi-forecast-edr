@@ -57,7 +57,7 @@ class DMIForecastEDRClient:
         Args:
             collection (Optional[Collection], optional): Returns forecast for a specific model.
                 Defaults to None.
-            parameter (Optional[str], optional): Returns forecast for a specific parameter. See: https://confluence.govcloud.dk/pages/viewpage.action?pageId=110690581
+            parameter (Optional[str], optional): Returns forecast for a specific parameter. See: https://opendatadocs.dmi.govcloud.dk/en/Data/Forecast_Data_Weather_Model_HARMONIE_EDR
                 Defaults to None.
             from_time (Optional[datetime], optional): Returns only objects with a "timeObserved" equal
                 to or after a given timestamp. Defaults to None.

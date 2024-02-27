@@ -1,12 +1,12 @@
 # DMI Forecast EDR API
-Python interface to the The Danish Meteorological Institute's (DMI) Open Data Forecast EDR API. This repo is a copy of [DMI-Open-Data](https://github.com/LasseRegin/dmi-open-data) with the one modification that it taps into the [Forecast EDR API](https://confluence.govcloud.dk/display/FDAPI/Forecast+Data) instead.
+Python interface to the The Danish Meteorological Institute's (DMI) Open Data Forecast EDR API. This repo is a copy of [DMI-Open-Data](https://github.com/LasseRegin/dmi-open-data) with the one modification that it taps into the [Forecast EDR API](https://opendatadocs.dmi.govcloud.dk/en/APIs/Forecast_Data_EDR_API) instead.
 
 The status is work-in-progress. There are many combinations of forecast models and parameters which have not been properly tested...
 
 ## Requirements
 
 - Python 3.6+
-- API Key for [**Forecast EDR v1**](https://confluence.govcloud.dk/display/FDAPI/Authentication)
+- API Key for [**Forecast EDR v1**](https://opendatadocs.dmi.govcloud.dk/en/Authentication)
 
 ## Installation
 
@@ -34,3 +34,4 @@ forecasts = client.get_forecast(
     coords = [12.5692,55.6757],
 )
 ```
+Parameters can be found in the [documentation](https://opendatadocs.dmi.govcloud.dk/en/Data/Forecast_Data_Weather_Model_HARMONIE_EDR).
