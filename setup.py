@@ -11,7 +11,7 @@ with open(os.path.join(DIR, "requirements.txt"), "r") as f:
 
 setuptools.setup(
     name="dmi-forecast-edr",
-    version="0.0.1",
+    version="0.0.2",
     author="Oliver Lylloff",
     author_email="oliverlylloff@gmail.com",
     description="Python interface to DMI forecast data API",
