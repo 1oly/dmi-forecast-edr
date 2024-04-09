@@ -22,4 +22,4 @@ class Collection(Enum):
    HarmonieIgSf = "harmonie_ig_sf"
    HarmonieDiniMl = "harmonie_dini_ml"
    HarmonieDiniPl = "harmonie_dini_pl"
-   HarmonieDineSf = "harmonie_dini_sf"
+   HarmonieDiniSf = "harmonie_dini_sf"
