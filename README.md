@@ -3,6 +3,8 @@ Python interface to the The Danish Meteorological Institute's (DMI) Open Data Fo
 
 The status is work-in-progress. There are many combinations of forecast models and parameters which have not been properly tested...
 
+**NOTE:** The forecast models "NEA" and "IGB" will expire and transition to "DINI" and "IG" in May 2024. Read more [here.](https://opendatadocs.dmi.govcloud.dk/Guides/Forecast-Model-Announcement) This has some consequences for the API in this repo, but the new models should work.
+
 ## Requirements
 
 - Python 3.6+
