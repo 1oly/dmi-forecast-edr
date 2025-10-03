@@ -3,8 +3,6 @@ Python interface to the The Danish Meteorological Institute's (DMI) Open Data Fo
 
 The status is work-in-progress. There are many combinations of forecast models and parameters which have not been properly tested...
 
-**NOTE:** The forecast models "NEA" and "IGB" will expire and transition to "DINI" and "IG" in May 2024. Read more [here.](https://opendatadocs.dmi.govcloud.dk/Guides/Forecast-Model-Announcement) This has some consequences for the API in this repo, but the new models should work.
-
 ## Requirements
 
 - Python 3.6+
@@ -36,4 +34,4 @@ forecasts = client.get_forecast(
     coords = [12.5692,55.6757],
 )
 ```
-Parameters can be found in the [documentation](https://opendatadocs.dmi.govcloud.dk/en/Data/Forecast_Data_Weather_Model_HARMONIE_EDR).
+Parameters can be found in the [documentation](https://opendatadocs.dmi.govcloud.dk/Data/Forecast_Data_Weather_Model_HARMONIE_DINI_EDR).
