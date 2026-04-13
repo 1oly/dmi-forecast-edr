@@ -7,15 +7,12 @@ from tenacity import retry, stop_after_attempt, wait_random
 from dmi_forecast_edr.enums import Collection
 
 class DMIForecastEDRClient:
-    _base_url = "https://dmigw.govcloud.dk/{version}/{api}"
+    _base_url = "https://opendataapi.dmi.dk/{version}/{api}"
 
-    def __init__(self, api_key: str, version: str = "v1"):
-        if api_key is None:
-            raise ValueError(f"Invalid value for `api_key`: {api_key}")
+    def __init__(self, version: str = "v1"):
         if version not in ["v1"]:
             raise ValueError(f"API version {version} not supported")
 
-        self.api_key = api_key
         self.version = version
 
     def base_url(self, api: str):
@@ -28,7 +25,6 @@ class DMIForecastEDRClient:
         res = requests.get(
             url=f"{self.base_url(api=api)}/{service}",
             params={
-                "api-key": self.api_key,
                 **params,
             },
             **kwargs,
@@ -57,7 +53,7 @@ class DMIForecastEDRClient:
         Args:
             collection (Optional[Collection], optional): Returns forecast for a specific model.
                 Defaults to None.
-            parameter (Optional[str], optional): Returns forecast for a specific parameter. See: https://opendatadocs.dmi.govcloud.dk/Data/Forecast_Data_Weather_Model_HARMONIE_DINI_IG
+            parameter (Optional[str], optional): Returns forecast for a specific parameter. See: https://opendataapi.dmi.dk/v1/forecastedr/collections/
                 Defaults to None.
             from_time (Optional[datetime], optional): Returns only objects with a "timeObserved" equal
                 to or after a given timestamp. Defaults to None.
@@ -115,6 +111,29 @@ class DMIForecastEDRClient:
             Collection: Collection enum object.
         """
         return Collection(collection_id)
+
+    def list_parameters(self, collection: Optional[Collection] = None) -> List[str]:
+        """List available parameter names for a given collection.
+
+        Args:
+            collection (Optional[Collection], optional): A specific collection/model
+                to list parameters for. If None, returns parameters for all collections.
+
+        Returns:s
+            List[str]: List of available parameter names.
+        """
+        if collection is not None:
+            service = f"collections/{collection.value}"
+            res = self._query(api="forecastedr", service=service, params={})
+            return list(res.get("parameter_names", {}).keys())
+        else:
+            res = self._query(api="forecastedr", service="collections", params={})
+            result = {}
+            for col in res.get("collections", []):
+                col_id = col.get("id")
+                params = list(col.get("parameter_names", {}).keys())
+                result[col_id] = params
+            return result
 
 # https://stackoverflow.com/questions/48937900/round-time-to-nearest-hour-python
 def hour_rounder(t):

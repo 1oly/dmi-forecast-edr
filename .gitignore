@@ -2,3 +2,13 @@ __pycache__/
 build/
 *.egg-info/
 .DS_Store
+
+*.pyc
+dist/
+
+# uv / venv
+.venv/
+uv.lock
+
+# pytest
+.pytest_cache/
