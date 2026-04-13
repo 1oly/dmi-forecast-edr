@@ -1,0 +1,38 @@
+[project]
+name = "dmi-forecast-edr"
+version = "0.1.0"
+description = "Python interface to DMI forecast data API"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+authors = [
+    { name = "Oliver Lylloff", email = "oliverlylloff@gmail.com" },
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "requests>=2.25.1",
+    "tenacity>=8.1.0,!=8.4.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/1oly/dmi-forecast-edr"
+Repository = "https://github.com/1oly/dmi-forecast-edr"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.pytest.ini_options]
+markers = [
+    "live: mark test as requiring network access",
+]
+addopts = "-m 'not live'"
