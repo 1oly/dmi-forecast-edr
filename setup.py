@@ -11,7 +11,7 @@ with open(os.path.join(DIR, "requirements.txt"), "r") as f:
 
 setuptools.setup(
     name="dmi-forecast-edr",
-    version="0.0.3",
+    version="0.1.0",
     author="Oliver Lylloff",
     author_email="oliverlylloff@gmail.com",
     description="Python interface to DMI forecast data API",
@@ -25,7 +25,7 @@ setuptools.setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    python_requires=">=3.6",
+    python_requires=">=3.10",
     package_data={"": ["LICENSE", "requirements.txt"]},
     include_package_data=True,
 )
