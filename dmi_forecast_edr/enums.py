@@ -16,4 +16,4 @@ class Collection(Enum):
    HarmonieDiniSf = "harmonie_dini_sf"
    HarmonieDiniEpsM = "harmonie_dini_eps_means"
    HarmonieDiniEpsPer = "harmonie_dini_eps_percentiles"
-   HarmonieDiniEpsProb = "harmonie_dini_eps_propabilities"
+   HarmonieDiniEpsProb = "harmonie_dini_eps_probabilities"

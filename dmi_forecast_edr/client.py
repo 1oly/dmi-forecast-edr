@@ -2,7 +2,7 @@ from datetime import datetime, timedelta
 from typing import List, Dict, Optional, Any, Union
 
 import requests
-from tenacity import retry, stop_after_attempt, wait_random
+from tenacity import retry, stop_after_attempt, wait_exponential
 
 from dmi_forecast_edr.enums import Collection
 
@@ -20,7 +20,8 @@ class DMIForecastEDRClient:
             raise NotImplementedError(f"Following api is not supported yet: {api}")
         return self._base_url.format(version=self.version, api=api)
 
-    @retry(stop=stop_after_attempt(10), wait=wait_random(min=0.1, max=1.00))
+    # Improving fetch strategy with longer waits...
+    @retry(stop=stop_after_attempt(5), wait=wait_exponential(multiplier=1, max=30))
     def _query(self, api: str, service: str, params: Dict[str, Any], **kwargs):
         res = requests.get(
             url=f"{self.base_url(api=api)}/{service}",
@@ -29,12 +30,9 @@ class DMIForecastEDRClient:
             },
             **kwargs,
         )
-        data = res.json()
-        http_status_code = data.get("http_status_code", 200)
-        if http_status_code != 200:
-            message = data.get("message")
+        if res.status_code != 200:
             raise ValueError(
-                f"Failed HTTP request with HTTP status code {http_status_code} and message: {message}"
+                f"Failed HTTP request with HTTP status code {res.status_code} and message: {res.text[:200]}"
             )
         return res.json()
 
